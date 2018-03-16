@@ -12,12 +12,61 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+/log/*.log
+/tmp
 
-/node_modules
-/yarn-error.log
+# RVM
+.ruby-version
 
-.byebug_history
+.idea/*
+
+*.DS_Store
+
+
+.rakeTasks
+delivery.iml
+delivery.ipr
+delivery.iws
+
+# Ruby Version and Gemset
+.ruby-gemset
+.ruby-version
+.rvmrc
+
+*.rbc
+capybara-*.html
+/log
+/tmp
+/public/system
+/coverage/
+/spec/tmp
+**.orig
+rerun.txt
+pickle-email-*.html
+config/initializers/secret_token.rb
+.idea/
+.DS_Store
+bower_components/
+.coveralls.yml
+
+## Environment normalisation:
+/vendor/bundle
+
+coverage
+
+public/system/uploads
+public/uploads
+
+public/assets
+public/system/assets
+
+#SMTP
+#/config/initializers/smtp_settings.rb
+
+
+#SPEC
+spec/support/uploads
+
+#Foreman and Dotenv
+Procfile
+.env
