@@ -1,4 +1,6 @@
 class Employee < ApplicationRecord
-  belongs_to :address
-  validates :name, :phone, :address, presence: true
+  validates :address_id, presence: true
+  has_one :address, dependent: :destroy
+
+  accepts_nested_attributes_for :address, :allow_destroy => true
 end

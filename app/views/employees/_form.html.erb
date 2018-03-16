@@ -36,6 +36,8 @@
     <%= form.date_select :birthday, id: :employee_birthday %>
   </div>
 
+  <%= render :partial => 'addresses/form_fields', locals: { :form => form } %>
+
   <div class="actions">
     <%= form.submit %>
   </div>
