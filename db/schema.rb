@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316033236) do
+ActiveRecord::Schema.define(version: 20180316211947) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "address"
@@ -32,10 +32,8 @@ ActiveRecord::Schema.define(version: 20180316033236) do
     t.string "password"
     t.string "phone"
     t.date "birthday"
-    t.bigint "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_clients_on_address_id"
   end
 
   create_table "employees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -51,6 +49,5 @@ ActiveRecord::Schema.define(version: 20180316033236) do
   end
 
   add_foreign_key "addresses", "clients"
-  add_foreign_key "clients", "addresses"
   add_foreign_key "employees", "addresses"
 end
