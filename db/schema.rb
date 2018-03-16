@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316032041) do
+ActiveRecord::Schema.define(version: 20180316033236) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "address"
-    t.string "neghborhood"
+    t.string "neighborhood"
     t.string "zip_code"
     t.string "state"
     t.string "city"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20180316032041) do
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_addresses_on_client_id"
   end
 
   create_table "clients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -48,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180316032041) do
     t.index ["address_id"], name: "index_employees_on_address_id"
   end
 
+  add_foreign_key "addresses", "clients"
   add_foreign_key "clients", "addresses"
   add_foreign_key "employees", "addresses"
 end
