@@ -1,4 +1,4 @@
-<%= simple_form_for @employee do |form| %>
+<%= simple_form_for @employee do |f| %>
   <% if employee.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
@@ -12,35 +12,35 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :employee_name %>
+    <%= f.label :name %>
+    <%= f.text_field :name, id: :employee_name %>
   </div>
 
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :employee_email %>
+    <%= f.label :email %>
+    <%= f.text_field :email, id: :employee_email %>
   </div>
 
   <div class="field">
-    <%= form.label :password %>
-    <%= form.text_field :password, id: :employee_password %>
+    <%= f.label :password %>
+    <%= f.text_field :password, id: :employee_password %>
   </div>
 
   <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, id: :employee_phone %>
+    <%= f.label :phone %>
+    <%= f.text_field :phone, id: :employee_phone %>
   </div>
 
   <div class="field">
-    <%= form.label :birthday %>
-    <%= form.date_select :birthday, id: :employee_birthday %>
+    <%= f.label :birthday %>
+    <%= f.date_select :birthday, id: :employee_birthday %>
   </div>
 
-  <%= form.fields_for :address do |address| %>
-    <%= render :partial => 'addresses/form_fields', locals: { :form => address } %>
+  <%= f.fields_for :address do |address| %>
+    <%= render :partial => 'address_fields', locals: { :f => address} %>
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>

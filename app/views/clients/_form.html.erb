@@ -1,4 +1,4 @@
-<%= simple_form_for @client do |form| %>
+<%= simple_form_for @client do |f| %>
   <% if client.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
@@ -12,35 +12,40 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :client_name %>
+    <%= f.label :name %>
+    <%= f.text_field :name, id: :client_name %>
   </div>
 
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :client_email %>
+    <%= f.label :email %>
+    <%= f.text_field :email, id: :client_email %>
   </div>
 
   <div class="field">
-    <%= form.label :password %>
-    <%= form.text_field :password, id: :client_password %>
+    <%= f.label :password %>
+    <%= f.text_field :password, id: :client_password %>
   </div>
 
   <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, id: :client_phone %>
+    <%= f.label :phone %>
+    <%= f.text_field :phone, id: :client_phone %>
   </div>
 
   <div class="field">
-    <%= form.label :birthday %>
-    <%= form.date_select :birthday, id: :client_birthday %>
+    <%= f.label :birthday %>
+    <%= f.date_select :birthday, id: :client_birthday %>
   </div>
 
-  <%= form.simple_fields_for :addresses do |address| %>
-    <%= render :partial => 'addresses/form_fields', locals: { :form => address } %>
-  <% end %>
+  <div>
+    <%= f.fields_for :addresses do |address| %>
+      <%= debug(address) %>
+      <%= render :partial => 'address_fields', locals: { :f => address} %>
+    <% end %>
+  </div>
+
+  <%= link_to_add_association 'Add Address', f, :addresses  %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
