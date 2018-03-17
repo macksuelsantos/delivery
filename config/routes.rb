@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :units
   root 'dashboard#index'
   resources :clients
   resources :employees

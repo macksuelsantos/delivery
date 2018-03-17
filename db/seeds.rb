@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+ActiveRecord::Base.transaction do
+  puts 'Seeding Units...'
+    if(Unit.all.empty?)
+      puts 'Creating Units Default'
+      Unit.create({name: 'UN', description: 'Unidade Padrão'})
+      Unit.create({name: 'KG', description: 'Kilograma'})
+      Unit.create({name: 'CX', description: 'Caixa'})
+    end
+end
