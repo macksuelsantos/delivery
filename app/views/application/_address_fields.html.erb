@@ -33,4 +33,8 @@
     <%= f.label :note %>
     <%= f.text_field :note, id: :address_note %>
   </div>
+
+  <% if controller_name == 'clients' %>
+    <%= link_to_remove_association 'Remove', f,  data: {confirm: 'Are you Sure?'}, :class => 'btn btn-danger btn-lg' %>
+  <% end %>
 </div>
