@@ -36,14 +36,13 @@
     <%= f.date_select :birthday, id: :client_birthday %>
   </div>
 
-  <div>
-    <%= f.fields_for :addresses do |address| %>
-      <%= debug(address) %>
-      <%= render :partial => 'address_fields', locals: { :f => address} %>
-    <% end %>
-  </div>
+  <%= f.fields_for :addresses do |address_form| %>
+    <%= render :partial => 'address_fields', locals: { :f => address_form} %>
+  <% end %>
 
-  <%= link_to_add_association 'Add Address', f, :addresses  %>
+  <div class="form-actions">
+    <%= link_to_add_association 'Add Address', f, :addresses  %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
