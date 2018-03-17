@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= number_to_currency(@product.price, :unit => '$') %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @product.weight %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @product.unit.name %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
