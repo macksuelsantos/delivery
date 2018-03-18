@@ -1,15 +1,33 @@
-<%= simple_form_for(@product) do |f| %>
-  <%= f.error_notification %>
+<div class="row panel" data-params="one">
+  <%= simple_form_for(@product) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :price %>
-    <%= f.input :weight %>
-    <%= f.select :unit_id, @units.collect { |u| [u.name, u.id] } %>
-  </div>
+    <div class="form-group">
+      <label><%= 'Name' %>:</label>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+    <div class="form-group">
+      <label><%= 'Description' %>:</label>
+      <%= f.text_field :description, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label><%= 'Price' %>:</label>
+      <%= f.text_field :price, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+       <label><%= 'Weight' %>:</label>
+       <%= f.text_field :weight, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.select :unit_id, @units.collect { |u| [u.name, u.id] }, {:prompt => 'Select a Unit'}, :required => true, :class => 'form-control' %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

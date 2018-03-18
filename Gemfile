@@ -58,3 +58,5 @@ gem 'simple_form'
 gem 'jquery-rails'
 
 gem "cocoon"
+
+gem 'bootstrap', '~> 4.0'
