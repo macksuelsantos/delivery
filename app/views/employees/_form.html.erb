@@ -1,46 +1,40 @@
-<%= simple_form_for @employee do |f| %>
-  <% if employee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+<div class="row panel" data-params="one">
+  <%= simple_form_for @employee do |f| %>
+    <%= f.error_notification %>
 
-      <ul>
-      <% employee.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <div class="form-group">
+      <label><%= 'Name' %>:</label>
+      <%= f.text_field :name, id: :employee_name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label><%= 'Email' %>:</label>
+      <%= f.text_field :email, id: :employee_email, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label><%= 'Password' %>:</label>
+      <%= f.text_field :password, id: :employee_password, type: 'password', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label><%= 'Phone' %>:</label>
+      <%= f.text_field :phone, id: :employee_phone, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label><%= 'Birthday' %>:</label>
+      <%= f.date_select :birthday, id: :employee_birthday, :required => true, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.fields_for :address do |address| %>
+        <%= render :partial => 'address_fields', locals: { :f => address} %>
       <% end %>
-      </ul>
+    </div>
+
+    <div class="actions">
+      <%= f.button :submit, class: 'btn btn-primary' %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, id: :employee_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email, id: :employee_email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.text_field :password, id: :employee_password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone %>
-    <%= f.text_field :phone, id: :employee_phone %>
-  </div>
-
-  <div class="field">
-    <%= f.label :birthday %>
-    <%= f.date_select :birthday, id: :employee_birthday %>
-  </div>
-
-  <%= f.fields_for :address do |address| %>
-    <%= render :partial => 'address_fields', locals: { :f => address} %>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

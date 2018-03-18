@@ -1,50 +1,44 @@
-<%= simple_form_for @client do |f| %>
-  <% if client.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+<div class="row panel" data-params="one">
+  <%= simple_form_for @client do |f| %>
+    <%= f.error_notification %>
 
-      <ul>
-      <% client.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <div class="form-group">
+      <label><%= 'Name' %>:</label>
+      <%= f.text_field :name, id: :client_name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label><%= 'Email' %>:</label>
+      <%= f.text_field :email, id: :client_email, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label><%= 'Password' %>:</label>
+      <%= f.text_field :password, id: :client_password, type: 'password', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label><%= 'Phone' %>:</label>
+      <%= f.text_field :phone, id: :client_phone, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label><%= 'Birthday' %>:</label>
+      <%= f.date_select :birthday, id: :client_birthday, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.fields_for :addresses do |address_form| %>
+        <%= render :partial => 'address_fields', locals: { :f => address_form} %>
       <% end %>
-      </ul>
+    </div>
+
+    <div class="form-actions">
+      <%= link_to_add_association 'Add Address', f, :addresses  %>
+    </div>
+
+    <div class="actions">
+      <%= f.button :submit, class: 'btn btn-primary' %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, id: :client_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email, id: :client_email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.text_field :password, id: :client_password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone %>
-    <%= f.text_field :phone, id: :client_phone %>
-  </div>
-
-  <div class="field">
-    <%= f.label :birthday %>
-    <%= f.date_select :birthday, id: :client_birthday %>
-  </div>
-
-  <%= f.fields_for :addresses do |address_form| %>
-    <%= render :partial => 'address_fields', locals: { :f => address_form} %>
-  <% end %>
-
-  <div class="form-actions">
-    <%= link_to_add_association 'Add Address', f, :addresses  %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
