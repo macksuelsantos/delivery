@@ -1,6 +1,15 @@
 <div class="row panel" data-params="one">
   <%= simple_form_for @address do |f| %>
-    <%= f.error_notification %>
+    <% if @address.errors.any? %>
+        <div class="alert alert-danger alert-dismissable">
+          <h2 class="alert-title">Sorry, <%= pluralize(@address.errors.count, 'error') %> prohibited this discount from being saved:</h2>
+          <ul class="alert-list">
+            <% @address.errors.full_messages.each do |message| %>
+                <li><strong>*</strong> <%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
     <%= render :partial => 'address_fields', locals: { :f => f} %>
 

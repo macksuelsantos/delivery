@@ -1,6 +1,15 @@
 <div class="row panel" data-params="one">
   <%= simple_form_for(@product) do |f| %>
-    <%= f.error_notification %>
+  <% if @product.errors.any? %>
+      <div class="alert alert-danger alert-dismissable">
+        <h2 class="alert-title">Sorry, <%= pluralize(@product.errors.count, 'error') %> prohibited this discount from being saved:</h2>
+        <ul class="alert-list">
+          <% @product.errors.full_messages.each do |message| %>
+              <li><strong>*</strong> <%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
 
     <div class="form-group">
       <label><%= 'Name' %>:</label>
