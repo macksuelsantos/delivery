@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-  validates :address, presence: true
+  validates :street, presence: true
   belongs_to :client, optional: true
   belongs_to :employee, optional: true
   belongs_to :order, optional: true

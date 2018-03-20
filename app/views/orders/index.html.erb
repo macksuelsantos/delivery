@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Client</th>
-      <th>Address</th>
       <th>Status</th>
       <th>Payment</th>
       <th>Delivery guy</th>
@@ -20,7 +19,6 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.client.name %></td>
-        <td><%= order.address.address %></td>
         <td><%= order.status %></td>
         <td><%= order.payment %></td>
         <td><%= order.delivery_guy %></td>
