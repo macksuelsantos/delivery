@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :set_clients
+  before_action :set_products
 
   # GET /orders
   # GET /orders.json
@@ -71,6 +72,10 @@ class OrdersController < ApplicationController
 
     def set_clients
       @clients = Client.all
+    end
+
+    def set_products
+      @products = Product.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320003526) do
+ActiveRecord::Schema.define(version: 20180320134947) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "street"
@@ -62,6 +62,17 @@ ActiveRecord::Schema.define(version: 20180320003526) do
     t.index ["client_id"], name: "index_orders_on_client_id"
   end
 
+  create_table "product_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "product_id"
+    t.decimal "amount", precision: 8, scale: 2
+    t.decimal "price", precision: 8, scale: 2
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_product_items_on_order_id"
+    t.index ["product_id"], name: "index_product_items_on_product_id"
+  end
+
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "description"
@@ -84,5 +95,7 @@ ActiveRecord::Schema.define(version: 20180320003526) do
   add_foreign_key "addresses", "employees"
   add_foreign_key "addresses", "orders"
   add_foreign_key "orders", "clients"
+  add_foreign_key "product_items", "orders"
+  add_foreign_key "product_items", "products"
   add_foreign_key "products", "units"
 end

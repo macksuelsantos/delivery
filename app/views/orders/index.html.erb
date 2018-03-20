@@ -11,6 +11,7 @@
       <th>Delivery guy</th>
       <th>Fare</th>
       <th>Note</th>
+      <th>Amount Items</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +25,7 @@
         <td><%= order.delivery_guy %></td>
         <td><%= number_to_currency(order.fare, :unit => '$') %></td>
         <td><%= order.note %></td>
+        <td><%= order.product_items.size %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
