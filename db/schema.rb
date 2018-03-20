@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180317175637) do
+ActiveRecord::Schema.define(version: 20180319234716) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "address"
@@ -24,8 +24,10 @@ ActiveRecord::Schema.define(version: 20180317175637) do
     t.datetime "updated_at", null: false
     t.bigint "client_id"
     t.bigint "employee_id"
+    t.bigint "order_id"
     t.index ["client_id"], name: "index_addresses_on_client_id"
     t.index ["employee_id"], name: "index_addresses_on_employee_id"
+    t.index ["order_id"], name: "index_addresses_on_order_id"
   end
 
   create_table "clients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -48,6 +50,18 @@ ActiveRecord::Schema.define(version: 20180317175637) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "client_id"
+    t.string "status"
+    t.string "payment"
+    t.string "delivery_guy"
+    t.decimal "fare", precision: 8, scale: 2
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_orders_on_client_id"
+  end
+
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "description"
@@ -68,5 +82,7 @@ ActiveRecord::Schema.define(version: 20180317175637) do
 
   add_foreign_key "addresses", "clients"
   add_foreign_key "addresses", "employees"
+  add_foreign_key "addresses", "orders"
+  add_foreign_key "orders", "clients"
   add_foreign_key "products", "units"
 end

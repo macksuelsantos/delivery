@@ -1,0 +1,10 @@
+<div class="row subheader">
+  <div class="subheader-titles">
+    <h2 class="subheader-title"><%= 'Editing Order' %></h2>
+  </div>
+</div>
+
+<%= render 'form', order: @order %>
+
+<%= link_to 'Show', @order %> |
+<%= link_to 'Back', orders_path %>
