@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_clients
 
   # GET /orders
   # GET /orders.json
@@ -16,15 +17,10 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @order.address = Address.new
-
-    @clients = Client.all
-    @addresses = Address.all
   end
 
   # GET /orders/1/edit
   def edit
-    @clients = Client.all
-    @addresses = Address.all
   end
 
   # POST /orders
@@ -71,6 +67,10 @@ class OrdersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    end
+
+    def set_clients
+      @clients = Client.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

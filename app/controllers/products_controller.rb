@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_unit
 
   # GET /products
   # GET /products.json
@@ -15,12 +16,10 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
-    @units = Unit.all
   end
 
   # GET /products/1/edit
   def edit
-    @units = Unit.all
   end
 
   # POST /products
@@ -72,5 +71,9 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit!
+    end
+
+    def set_unit
+      @units = Unit.all
     end
 end
