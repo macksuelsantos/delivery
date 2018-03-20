@@ -27,7 +27,7 @@
 
 <p>
   <strong>Fare:</strong>
-  <%= @order.fare %>
+  <%= number_to_currency(@order.fare, :unit => '$') %>
 </p>
 
 <p>

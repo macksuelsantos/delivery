@@ -24,7 +24,7 @@
         <td><%= order.status %></td>
         <td><%= order.payment %></td>
         <td><%= order.delivery_guy %></td>
-        <td><%= order.fare %></td>
+        <td><%= number_to_currency(order.fare, :unit => '$') %></td>
         <td><%= order.note %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
